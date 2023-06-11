@@ -4,6 +4,11 @@ class Emprestimo:
         self.nome_leitor = nome_leitor
         self.nome_livro = nome_livro
 
+class Leitor:
+    def __init__(self, id_leitor, nome_leitor):
+        self.id_leitor = id_leitor
+        self.nome_leitor = nome_leitor
+
 emprestimos = []
 
 def cadastrar_emprestimo():
@@ -49,6 +54,50 @@ def atualizar_emprestimo(emprestimos):
             return
     print("Empréstimo não encontrado.")
 
+    leitores = []
+
+def cadastrar_leitor():
+    id_leitor = int(input("Digite o ID do leitor: "))
+    nome_leitor = input("Digite o nome do leitor: ")
+    leitor = Leitor(id_leitor, nome_leitor)
+    return leitor
+
+def listar_leitores(leitores):
+    if len(leitores) == 0:
+        print("Não há leitores cadastrados!")
+    else:
+        print("Lista de leitores:")
+        for leitor in leitores:
+            print(f"----------- \nID: {leitor.id_leitor}  \nNome: {leitor.nome_leitor} \n-----------")
+
+def listar_leitor_codigo(leitores):
+    if len(leitores) == 0:
+        print("Não há leitores cadastrados: ")
+    else:
+        id_leitor = int(input("Digite o ID do leitor a ser listado: "))
+        for leitor in leitores:
+            if leitor.id_leitor == id_leitor:
+                print(f"----------- \nID: {leitor.id_leitor}  \nNome: {leitor.nome_leitor} \n-----------")
+
+def remover_leitor(leitores):
+    id_leitor = int(input("Digite o ID do leitor a ser removido: "))
+    for leitor in leitores:
+        if leitor.id_leitor == id_leitor:
+            leitores.remove(leitor)
+            print("Leitor removido com sucesso.")
+            return
+    print("Leitor não encontrado.")
+
+def atualizar_leitor(leitores):
+    id_leitor = int(input("Digite o ID do leitor a ser atualizado: "))
+    for leitor in leitores:
+        if leitor.id_leitor == id_leitor:
+            novo_nome = input("Digite o novo nome do leitor: ")
+            leitor.nome_leitor = novo_nome
+            print("leitor atualizado com sucesso.")
+            return
+    print("leitor não encontrado.")
+
 while True:
     print("\nMenu:")
     print("Digite 0 - Sair \nDigite 1 - Cadastrar leitor \nDigite 2 - Listar leitores \nDigite 3 - Listar leitor por ID \nDigite 4 - Remover leitor "
@@ -59,19 +108,21 @@ while True:
     opcao = input("Escolha uma opção: ")
 
     if opcao == "1":
-        pass
+        leitor = cadastrar_leitor()
+        leitores.append(leitor)
+        print("Leitor cadastrado com sucesso!")
     else:
         if opcao == "2":
-            pass
+            listar_leitores(leitores)
         else:
             if opcao == "3":
-                pass
+                listar_leitor_codigo(leitores)
             else:
                 if opcao == "4":
-                    pass
+                    remover_leitor(leitores)
                 else:
                     if opcao == "5":
-                        pass
+                        atualizar_leitor(leitores)
                     else:
                         if opcao == "6":
                             pass
