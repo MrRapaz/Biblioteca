@@ -4,7 +4,7 @@ class Emprestimo:
         self.nome_leitor = nome_leitor
         self.nome_livro = nome_livro
 
-emprestimos = []
+emprestimos = [] 
 
 def cadastrar_emprestimo():
     id_emprestimo = int(input("Digite o ID do empréstimo: "))
