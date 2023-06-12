@@ -1,13 +1,20 @@
+class Leitor:
+    def _init_(self, id_leitor, nome_leitor):
+        self.id_leitor = id_leitor
+        self.nome_leitor = nome_leitor
+        
+class Livro:
+    def _init_(self, id_livro, nome_livro, autor_livro):
+        self.id_livro = id_livro
+        self.nome_livro = nome_livro
+        self.autor_livro = autor_livro
+
 class Emprestimo:
-    def __init__(self, id_emprestimo, nome_leitor, nome_livro):
+    def _init_(self, id_emprestimo, nome_leitor, nome_livro):
         self.id_emprestimo = id_emprestimo
         self.nome_leitor = nome_leitor
         self.nome_livro = nome_livro
 
-class Leitor:
-    def __init__(self, id_leitor, nome_leitor):
-        self.id_leitor = id_leitor
-        self.nome_leitor = nome_leitor
 
 emprestimos = []
 
@@ -54,7 +61,8 @@ def atualizar_emprestimo(emprestimos):
             return
     print("Empréstimo não encontrado.")
 
-    leitores = []
+
+leitores = []
 
 def cadastrar_leitor():
     id_leitor = int(input("Digite o ID do leitor: "))
@@ -98,6 +106,51 @@ def atualizar_leitor(leitores):
             return
     print("leitor não encontrado.")
 
+livros = []
+
+def cadastrar_livro():
+    id_livro = int(input("Digite o ID da Livro: "))
+    nome_livro = input("Digite o nome da Livro: ")
+    autor_livro = input("Digite o autor da Livro: ")
+    livro = Livro(id_livro, nome_livro, autor_livro)
+    return livro
+
+def listar_livros(Livros):
+    if len(Livros) == 0:
+        print("Não há Livros cadastradas.")
+    else:
+        print("Lista de Livros:")
+        for Livro in Livros:
+            print(f"----------- \nID: {Livro.id_livro}  \nNome: {Livro.nome_livro}  \nAutor: {Livro.autor_livro} \n-----------")
+
+def listar_livro_codigo(Livros):
+    if len(Livros) == 0:
+        print("Não há livros cadastrados: ")
+    else:
+        id_livro = int(input("Digite o ID do Livro a ser listado: "))
+        for Livro in Livros:
+            if Livro.id_livro == id_livro:
+                print(f"----------- \nID: {Livro.id_livro}  \nNome: {Livro.nome_livro}  \nAutor: {Livro.autor_livro} \n-----------")
+
+def remover_livro(Livros):
+    id_livro = int(input("Digite o ID do Livro a ser removido: "))
+    for Livro in Livros:
+        if Livro.id_livro == id_livro:
+            Livros.remove(Livro)
+            print("Livro removido com sucesso.")
+            return
+    print("Livro não encontrado.")
+
+def atualizar_livro(Livros):
+    id_livro = int(input("Digite o ID do Livro a ser atualizado: "))
+    for Livro in Livros:
+        if Livro.id_livro == id_livro:
+            novo_nome = input("Digite o novo nome da Livro: ")
+            Livro.nome_livro = novo_nome
+            print("Livro atualizada com sucesso.")
+            return
+    print("Livro não encontrada.")
+
 while True:
     print("\nMenu:")
     print("Digite 0 - Sair \nDigite 1 - Cadastrar leitor \nDigite 2 - Listar leitores \nDigite 3 - Listar leitor por ID \nDigite 4 - Remover leitor "
@@ -125,19 +178,21 @@ while True:
                         atualizar_leitor(leitores)
                     else:
                         if opcao == "6":
-                            pass
+                            livro = cadastrar_livro()
+                            livros.append(livro)
+                            print("Livro cadastrado com sucesso!")
                         else:
                             if opcao == "7":
-                                pass
+                                listar_livros(livros)
                             else:
                                 if opcao == "8":
-                                    pass
+                                    listar_livro_codigo(livros)
                                 else:
                                     if opcao == "9":
-                                        pass
+                                        remover_livro(livros)
                                     else:
                                         if opcao == "10":
-                                            pass
+                                            atualizar_livro(livros)
                                         else:
                                             if opcao == "11":
                                                 emprestimo = cadastrar_emprestimo()
