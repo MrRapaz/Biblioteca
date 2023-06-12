@@ -1,6 +1,7 @@
 class Leitor:
     def _init_(self, id_leitor, nome_leitor):
         self.id_leitor = id_leitor
+
         self.nome_leitor = nome_leitor
         
 class Livro:
@@ -13,7 +14,12 @@ class Emprestimo:
     def _init_(self, id_emprestimo, nome_leitor, nome_livro):
         self.id_emprestimo = id_emprestimo
         self.nome_leitor = nome_leitor
+        
+class Livro:
+    def _init_(self, id_livro, nome_livro, autor_livro):
+        self.id_livro = id_livro
         self.nome_livro = nome_livro
+        self.autor_livro = autor_livro
 
 emprestimos = []
 
